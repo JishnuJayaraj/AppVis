@@ -9,6 +9,8 @@ The following instructions will setup the lecture materials.
    * go to the directory of your preference for Applied Visualization
    * run: __git clone https://gitlab.cs.fau.de/i9/appvis.git__
 
+
+
 A live server is required to properly run the exercises. There are many
 possibilities to install and run a light weight live server.
 1. Install *Visual Studio Code* and the *Live Server* extension
