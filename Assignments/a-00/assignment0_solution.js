@@ -6,7 +6,7 @@ import { vec2_from_xy } from "../../js/util_math.js";
 function randomPolygon() {
   let points = [];
     
-  let n = 15; // number of points
+  let n = 10; // number of points
   for(let i = 0; i < n; ++i){
     let x = 4 * Math.random() - 2;
     let y = 4 * Math.random() - 2;
