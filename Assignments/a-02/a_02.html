@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tutorials to Applied Visualization (2)</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Applied Visualization Assignment 2">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap 4.1.3 -->
+    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src='../../libs/jquery-3.3.1.min.js'></script>
+    <script src='../../libs/bootstrap-4.1.3/js/bootstrap.min.js'></script>
+
+    <!-- own styles-->
+    <link rel="stylesheet" href="../../css/i9assignment.css">
+    <script type="text/javascript" async src="../../libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$', '$'], ['\$', '\$']] },
+            TeX: {
+                Macros: {
+                    vccc: ["{\\begin{bmatrix}#1\\\\#2\\\\#3\\end{bmatrix}}", 3],
+                    vcc: ["{\\begin{bmatrix}#1\\\\#2\\end{bmatrix}}", 2],
+                    pvcc: ["{\\begin{pmatrix}#1\\\\#2\\end{pmatrix}}", 2],
+                }
+            }
+        });
+    </script>
+
+    <!-- Three.js -->
+    <script src="../../libs/three.min.js"></script>
+    <script src="../../libs/threeAdd/OrbitControls.js"></script>
+
+</head>
+
+<body>
+    <div id="root" class="container">
+        <img src="../../logo/logoTechFak.png" class="float-right col-md-3 col-xs-3 assignmentlogo">
+
+        <!-- Header of the entire page -->
+        <h1 class="assignment">Tutorials to Applied Visualization (2): Interpolation and Plotting 2D-Functions</h1>
+        <p class="lead text-justify">
+            Interpolation is also very important in computer graphics. Let's have a look at it!
+        </p>
+        <hr style="height:2px;color:#333;background-color:#555;" />
+
+        <!-- Assignment 2.1 -->
+        <h2>Assignment 2.1: Theory: Interpolation</h2>
+        <div class="container">
+            <h5>a) Linear Interpolation</h5>
+            <div class="container">
+                <p class="text-justify">
+                    Given the points $p_0 = (0,2)$ and $p_1 = (5,7)$ with function values $f_0 = 10$ and $f_1 = 18$ compute the function value
+                    at $p = (2, 4)$ using linear interpolation.
+                </p>
+                <div class="answer" title="Solution">
+                    <p>
+                        All three points are on one line (otherwise a linear interpolation is not possible). Therefore it is sufficient to use only
+                        the x-coordinate for the computation. The linear interpolation is given as the following: $$f(p)
+                        = \alpha f(p_0) + \beta f(p_1), \alpha + \beta = 1$$ $$\Rightarrow f(p) = \alpha f_0 + \beta f_1$$
+                        The interpolation factors are computed by $$\alpha = \frac{p - p_0}{p_1 - p_0} = \frac{2 - 0}{5 -
+                        0} = \frac{2}{5},$$ $$\beta = \frac{p_1 - p}{p_1 - p_0} = \frac{5 - 2}{5 - 0} = \frac{3}{5}.$$ Therefore
+                        the function evaluates to the following at point $p$: $$f(p) = \frac{2}{5} \cdot 10 + \frac{3}{5}
+                        \cdot 18 = \frac{66}{5} = 13.2$$
+                    </p>
+                </div>
+            </div>
+            <div class="m-2"></div>
+            <h5>b) Bilinear Interpolation</h5>
+            <div class="container">
+                <p class="text-justify">
+                    Given the quadrilateral $$A = (1,1), B = (7,1), C = (9,7), D = (3,7)$$ with function values at the vertices $$f_A = 7, f_B
+                    = 11, f_C = 9, f_D = 13.$$ Compute the value at $P = (5,4)$.
+                </p>
+                <div class="answer" title="Solution">
+                    <p>
+                        Taking a closer look at the values, one can see that the given quad is a parallelogram and that $P$ is at its center of gravity.
+                        Therefore the function value at $P$ is just the average of the other points $$f(P) = \frac{1}{4}
+                        (7 + 11 + 9 + 13) = 10.$$
+                    </p>
+                </div>
+            </div>
+            <div class="m-2"></div>
+            <h5>c) Bilinear Interpolation Continued</h5>
+            <div class="container">
+                <p class="text-justify">
+                    Now point $D$ moves to $(0,11)$. Again compute the value at $P = (5,4)$.
+                </p>
+                <div class="answer" title="Solution">
+                    <p id="theory2_1c">
+                        If this text appears, then 'stencilWalk.js' did not execute properly!
+                    </p>
+                    <script src="stencilWalk.js"></script>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Assignment 2.2 -->
+        <h2>Assignment 2.2: Theory: Barycentric Coordinates</h2>
+        <div class="container">
+            <p class="text-justify">
+                Given four points $P_i \in R^2, i \in {0,1,2,3}$ $$P_0 = (1,3), P_1 = (5,6), P_2 = (7,0), P_3 = (4.5,3).$$
+            </p>
+            <img class="mx-auto d-block" src="./Baricentric.png">
+            <h5>a) Compute the triangle areas</h5>
+            <div class="container">
+                <p class="text-justify">
+                    $$A_0, A_1, A_2, A = A_0 + A_1 + A_2$$ and the barycentric coordinates of $P_3$.
+                </p>
+                <div class="answer" title="Solution">
+                    <p>
+                        $$A_0 = 0.5 \left|\overrightarrow{P_2 P_1} \times \overrightarrow{P_2 P_3}\right| = 0.5 \left| \pvcc{-2}{6} \times \pvcc{-2.5}{3}
+                        \right| = 4.5$$ $$A_1 = 0.5 \left|\overrightarrow{P_0 P_2} \times \overrightarrow{P_0 P_3}\right|
+                        = 0.5 \left| \pvcc{6}{-3} \times \pvcc{3.5}{0} \right| = 5.25$$ $$A_2 = 0.5 \left|\overrightarrow{P_0
+                        P_3} \times \overrightarrow{P_0 P_1}\right| = 0.5 \left| \pvcc{3.5}{0} \times \pvcc{4}{3} \right|
+                        = 5.25$$ $$A = A_1 + A_2 + A_3 = 15$$
+                    </p>
+                </div>
+            </div>
+            <div class="m-2"></div>
+            <h5>b) Answer the following questions</h5>
+            <div class="container">
+                <p class="text-justify">
+                    <ul>
+                        <li>If $u = 0$, where would $P_3$ end up?</li>
+                        <li>Where are all points with $u + v + w = 1$ and $u,v,w > 0$ located?</li>
+                        <li>Where is the point with $u = v = w = \frac{1}{3}$ located?</li>
+                        <li>What are the barycentric coordinates of the vertices $P_0$, $P_1$ and $P_2$?</li>
+                    </ul>
+                </p>
+                <div class="answer" title="Solution">
+                    <p>
+                        For the following task consider the barycentric coordinates $u, v, w$, $$P(u,v,w) = u P_0 + v P_1 + w P_2.$$
+                        <ul>
+                            <li>
+                                $P(u = 0, v, w) = v P_1 + w P_2 \Rightarrow P_3$ would lie along the line defined by $P_1$ and $P_2$.
+                            </li>
+                            <li>
+                                $u + v + w = 1$ and $u, v, w > 0 \Rightarrow$ these points are located inside the triangle $A$.
+                            </li>
+                            <li>
+                                The point with $u = v = w = \frac{1}{3}$ is located in the center of gravity.
+                            </li>
+                            <li>
+                                $P_0 = P(1,0,0)$, $P_1 = P(0,1,0)$, $P_2 = P(0,0,1)$.
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="m-2"></div>
+            <h5>c) Interpolation</h5>
+            <div class="container">
+                <p class="text-justify">
+                    The triangle $\Delta(P_0,P_1,P_2)$ is a cell in a 2D dataset representing the cities Stuttgart, Nürnberg and München. We
+                    measure the temperature in these cities and end up with the following measurement values a the vertices:
+                    $$f(P_0) = 20.0, f(P_1) = 25.0, f(P_2)=21.0$$ Compute the interpolated temperature in Nördlingen represented
+                    by $P_3$.
+                </p>
+                <div class="answer" title="Solution">
+                    <p>
+                        $$\begin{align} f(P_3) &= u f_0 + v f_1 + w f_2\\ &= \frac{A_0}{A} f_0 + \frac{A_1}{A} f_1 + \frac{A_2}{A} f_2\\ &= \frac{4.5}{15}
+                        \cdot 20 + \frac{5.25}{15} \cdot 25 + \frac{5.25}{15} \cdot 21\\ &= 22.1 \end{align}$$
+                    </p>
+                </div>
+            </div>
+            <div class="m-2"></div>
+        </div>
+        <hr />
+
+        <!-- Assignment 2.3 -->
+        <h2>Assignment 2.3: Linearizing Matrices</h2>
+        <p>
+            In this assignment we will implement mappings between 2-dimensional matrices and a 1-dimensional array.
+        </p>
+        <div class="container">
+            <h5>a) Matrix Conversion</h5>
+            <p>
+                Convert a 1D-Array to a 2D-Matrix and vice versa.
+                <button class="btn btn-outline-primary" id="refreshA">Refresh</button>
+            </p>
+            <div class="card bg-light" style="max-height:200px; overflow-y: scroll">
+                <div class="card-body">
+                    <p class="text-monospace">
+                        <span id="printAreaA"></span>
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+            <h5>b) Indexing</h5>
+            <p>
+                Address a 2D-matrix with a 1D-Index.
+                <button class="btn btn-outline-primary" id="refreshB">Refresh</button>
+            </p>
+            <div class="card bg-light" style="max-height:200px; overflow-y: scroll">
+                <div class="card-body">
+                    <p class="text-monospace">
+                        <span id="printAreaB"></span>
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+            <h5>c) Printing</h5>
+            <p>
+                Print a 2D-Matrix that is stored in a 1D data array.
+                <button class="btn btn-outline-primary" id="refreshC">Refresh</button>
+            </p>
+            <div class="card bg-light" style="max-height:900px; overflow-y: scroll">
+                <div class="card-body">
+                    <p class="text-monospace" style="font-size:40%">
+                        <span id="printAreaC"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Assignment 2.4 -->
+        <h2>Assignment 2.4: Plotting a 2D function</h2>
+        <p class="text-justify">
+            In this part of the assignment we want to plot a 2D-function by sampling it in a regular pattern.
+        </p>
+        <div class="container">
+            <table class="table table-sm table-borderless">
+                <tr>
+                    <td valign="top">
+                        <h5>a)</h5>
+                    </td>
+                    <td valign="top">
+                        Create the function
+                        <code class="cody">func</code> that is to be visualized and that takes two arguments
+                        <code class="cody">x, y</code> and returns
+                        <code class="cody">x&times;y</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <h5>b)</h5>
+                    </td>
+                    <td valign="top">
+                        Create a function called
+                        <code class="cody">CtoPSpace</code> to convert the 2D position inside the sampling grid to 2D x,y coordinates. This function takes three
+                        arguments:
+                        <ul>
+                            <li>
+                                <code class="cody">origin</code> - tuple containing the 2D-coordinates in P space of the origin,
+                            </li>
+                            <li>
+                                <code class="cody">index</code> - tuple containing the 2 indices in C space,</li>
+                            <li>
+                                <code class="cody">step</code> - the step size of the sampling</li>
+                        </ul>
+                        and returns a tuple containing the resulting position
+                        <code class="cody">(x,y)</code> in P space.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <h5>c)</h5>
+                    </td>
+                    <td valign="top">
+                        Implement a function called
+                        <code class="cody">getIndex</code>. This function converts an index into a 2D array that is saved as a 1D array. Arguments:
+                        <ul>
+                            <li>
+                                <code class="cody">size</code> - size of the quadratic 2D array.</li>
+                            <li>x</li>
+                            <li>y</li>
+                        </ul>
+                        Returns an index into the 1D array.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <h5>d)</h5>
+                    </td>
+                    <td valign="top">
+                        Implement a function called
+                        <code class="cody">evaluateFunc</code>. Arguments:
+                        <ul>
+                            <li>
+                                <code class="cody">start</code> - coordinate in function space (used for x and y)</li>
+                            <li>
+                                <code class="cody">end</code> - coordinate in function space (used for x and y)</li>
+                            <li>
+                                <code class="cody">samples</code> - number of samples per dimension</li>
+                        </ul>
+                        This function samples the function
+                        <code class="cody">func</code> from (start,start) to (end,end) using "samples"-samples in each dimension. Use the previously implemented
+                        function
+                        <code class="cody">CtoPSpace</code> to convert between coordinate systems. The return value should be an array of tuples that contain
+                        (x,y,func(x,y)).
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <h5>e)</h5>
+                    </td>
+                    <td valign="top">
+                        Implement a function called
+                        <code class="cody">triangulateSamples</code>. It takes the number of samples as argument and creates an index list for a triangulation of a grid
+                        sized $\text{numSamples} \times \text{numSamples}$. Three consecutive indices represent one triangle.
+                    </td>
+                </tr>
+            </table>
+            <h5>Samples without triangulation</h5>
+            <div id="a2_4a" class="renderwindow row"></div>
+            <h5>Samples with triangulation</h5>
+            <div id="a2_4b" class="renderwindow row"></div>
+        </div>
+        <p>
+            See the
+            <a class="assignmentlink" href="#solution">solution</a> for reference.
+        </p>
+    </div>
+
+    <script src="../../js/util_assignment_loader.js"></script>
+
+    <script type="module">
+        loadAssignmentByTag("./rendererAss2.js");
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+
+</html>

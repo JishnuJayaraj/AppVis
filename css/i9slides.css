@@ -1,0 +1,150 @@
+/*********************************************
+* i9 STYLES
+*********************************************/
+
+
+.textHint {
+  margin-top: 1em;
+  float: left;
+  font-size: 0.85em;
+  font-variant: small-caps;
+  /*background:#ccc;*/
+  /*border: 1px #333 solid;*/
+  border-radius: 6px
+}
+.textDescr {
+  text-align: left;
+  background-color: #008B8B;
+  font-size: 80%;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif !important;
+  font-variant: normal!important;
+  color: white;
+  display:none;
+  position:fixed;
+  top: 1%;
+  left: 1%;
+  border:1px solid #000;
+  max-height: 95%;
+  max-width: 95%;
+  overflow: auto;
+  z-index: 10;
+  border-radius: 6px;
+  padding-top: 10px!important;
+  padding-right: 10px!important;
+  padding-bottom: 10px!important;
+  padding-left: 10px!important;
+}
+.textDescr > h3 {
+  font-variant: small-caps;
+}
+.textDescr > h4 {
+  font-variant: small-caps;
+}
+
+span.textHover:hover > div.textHoverDescr {
+  display: block;
+}
+
+div.textHoverDescr {
+  text-align: left;
+  background-color: #f0f0f0;
+  font-size: 1.5em ! important;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif !important;
+  font-variant: normal!important;
+  color: #3c3c3c;
+  display:none;
+  position:absolute;
+  border:1px solid #000;
+  height: auto;
+  z-index: 10;
+  top: 1em;
+  left: -1em;
+  border-radius: 6px;
+  padding-top: 10px!important;
+  padding-right: 10px!important;
+  padding-bottom: 10px!important;
+  padding-left: 10px!important; 
+}
+.imgHint {
+  border: 1px #333 solid;
+  border-radius: 6px;
+  float: left;
+  margin-top: 1em;
+  font-size: 0.85em;
+  font-variant: small-caps;
+}
+.imgDescr {
+  background-color: white;
+  display:none;
+  position:absolute;
+  border:2px solid #FFEFD5 ! important;
+  height: auto;
+  z-index: 1;
+  top: 20%;
+  left: 10%;
+  border-radius: 6px;
+  padding: 0.2em 0.2em 0.2em 0.2em ! important;
+}
+
+.imgPopover {
+  background-color: #F8F8FF;
+  display:none;
+  position:absolute;
+  border:2px solid #FFEFD5 ! important;
+  height: auto;
+  z-index: 1;
+  top: 10%;
+  left: 10%;
+  border-radius: 6px;
+  padding: 0.2em 0.2em 0.2em 0.2em ! important;
+}
+
+#imgPopover {
+  border: 1px #333 solid;
+  border-radius: 6px;
+  float: left;
+  margin-top: 1em;
+  margin-left: 0.5em;
+  font-size: 0.5em;
+  font-variant: small-caps;
+}
+
+.smallfont {
+  font-size: 70%
+}
+
+
+.i9card {
+  text-align: left; 
+  float: none; 
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 15px; 
+  padding-top: 5px; 
+  padding-left: 10px; 
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); 
+}
+
+table.i9thinrow td {
+  height: 10px!important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+table.i9thinrow th {
+  height: 10px!important;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+div.index {
+  position: fixed;
+  left: 0.5em;
+  bottom: 0.5em;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: bolder;
+}

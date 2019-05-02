@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>i9AppVis Help</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap 4.1.3 -->
+    <link rel="stylesheet" type="text/css" href="./libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src='./libs/jquery-3.3.1.min.js'></script>
+    <script src='./libs/bootstrap-4.1.3/js/bootstrap.min.js'></script>
+
+    <!-- own styles -->
+    <link rel="stylesheet" href="./css/i9assignment.css">
+    <script src="./libs/MathJax/latest.js"></script>
+</head>
+
+<body class="text-justify">
+    <div id="root" class="container">
+        <img src="./logo/logoTechFak.png" class="float-right col-md-3 col-xs-3 assignmentlogo"></img>
+        <h1 class="assignment">Applied Visualization</h1>
+        <p class="lead">
+            Getting started, general Help and FAQ sheet for Lecture and Assignments
+        </p>
+        <h2>1. Staying up to date</h2>
+        <p>
+            The latest version of the slides and assignments is kept in this gitLab
+            <a href="https://gitlab.cs.fau.de/i9/appivs.git">repository</a>. You should have access to the FAU-gitLab with your
+            <a href="https://www.sso.uni-erlangen.de/cas/login">IdM</a> account.
+            <pre><code>git clone https://gitlab.cs.fau.de/i9/appvis.git</code></pre> Remember to keep your local repository up to date.
+            <pre><code>git pull</code></pre> There are different tutorials on how to use git. For example
+            <a href="https://rogerdudler.github.io/git-guide/index.html">this</a> or
+            <a href="https://www.google.com/search?q=git+tutorial">others</a>.
+        </p>
+        <p>
+            You can us any git GUI as well. Examples are
+            <a href="https://www.gitkraken.com/">GitKraken</a>,
+            <a href="https://www.sourcetreeapp.com/">Sourcetree</a> and
+            <a href="https://git-scm.com/download/gui/windows">others</a>.
+        </p>
+        <h2>2. Edit Assignments</h2>
+        <p>
+            You can find the Assignments in the aforementioned repository in the following path. Where XY is the number of the assignment.
+            <pre><code>./Assignments/a_XY/a_XY.html
+./Assignments/a_XY/assignmentXY.js
+./Assignments/a_XY/assignmentXY_solution.js</code></pre> In order to finish an assignment, you can edit these provided files to match the task description. The description
+            is given both in the code(.js) and on the site(.html). You can choose any programming environment that suits
+            your needs. Free examples are
+            <a href="https://code.visualstudio.com/">Visual Studio Code</a>,
+            <a href="https://atom.io/">Atom</a> and
+            <a href="https://www.slant.co/topics/1686/~best-javascript-ides-or-editors">others</a>
+        </p>
+        <p>
+            To view the task description as well as to view your programmed results, you can open the html-site of the according assignment
+            in your favoured browser. Note however that, not every browser may support every feature needed. We recommend using
+            <a href="https://www.mozilla.org/de/firefox/new/">Firefox</a> or
+            <a href="https://www.google.com/intl/de_ALL/chrome/">Chrome</a>.
+        </p>
+        <h3>Local Server</h3>
+        <p>
+            Due to the
+            <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS Policy</a>, the browser may forbid the access of module-files when opening the .html from your file system.
+            One solution to this problem is to use a local server.
+        </p>
+        <p>
+            Both
+            <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Visual Studio Code</a> and
+            <a href="https://atom.io/packages/atom-live-server">Atom</a> offer a plugin called
+            <a href="">Live Server</a>, which - additionally to serving - updates the page when any file is changed.
+        </p>
+        <p>
+            Another possibility is to use a python server inside the repository-root directory
+            <pre><code>python -m SimpleHTTPServer</code></pre> To which you can
+            <a href="http://localhost:5500">connect</a>
+            using your browser.
+            <pre><code>http://localhost:5500</code></pre>
+        </p>
+        <h2>3. Feedback</h2>
+        <p>
+            When you recognize that there are mistakes in the slides or assignments, please let us know by writing an issue in
+            <a href="https://gitlab.cs.fau.de/i9/gm/issues?scope=all&utf8=%E2%9C%93&state=opened">gitLab</a> or via
+            <a href="mailto:gitlab-issue+i9/gm+2b0jm7r6w50gifrf9o0heveg5@cip.cs.fau.de">mail</a>.
+        </p>
+    </div>
+    </div>
+    </div>
+    <br><br><br><br><br>
+
+    <script src="./js/util_assignment_loader.js"></script>
+</body>

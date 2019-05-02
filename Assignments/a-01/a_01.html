@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tutorials to Applied Visualization (1)</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Applied Visualization Assignment 1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap 4.1.3 -->
+    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src='../../libs/jquery-3.3.1.min.js'></script>
+    <script src='../../libs/bootstrap-4.1.3/js/bootstrap.min.js'></script>
+
+    <!-- own styles-->
+    <link rel="stylesheet" href="../../css/i9assignment.css">
+    <script type="text/javascript" async src="../../libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$', '$'], ['\$', '\$']] },
+            TeX: {
+                Macros: {
+                    vccc: ["{\\begin{bmatrix}#1\\\\#2\\\\#3\\end{bmatrix}}", 3],
+                    vcccc: ["{\\begin{bmatrix}#1\\\\#2\\\\#3\\\\#4\\end{bmatrix}}", 4],
+                    vcc: ["{\\begin{bmatrix}#1\\\\#2\\end{bmatrix}}", 2],
+                    pvcc: ["{\\begin{pmatrix}#1\\\\#2\\end{pmatrix}}", 2],
+                }
+            }
+        });
+    </script>
+
+    <!-- Three.js -->
+    <script src="../../libs/three.min.js"></script>
+    <script src="../../libs/threeAdd/OrbitControls.js"></script>
+
+</head>
+
+<body>
+
+    <div id="root" class="container">
+        <img src="../../logo/logoTechFak.png" class="float-right col-md-3 col-xs-3 assignmentlogo">
+
+        <!-- Header of the entire page -->
+        <h1 class="assignment">Tutorials to Applied Visualization (1): Transformations and Mappings</h1>
+        <p class="lead text-justify">
+            Matrices are important in computer graphics. So, in this exercise you will implement some basic matrix functionality!
+        </p>
+        <hr style="height:2px;color:#333;background-color:#555;" />
+
+        <!-- Assignment 1.1 -->
+        <h2>Assignment 1.1: Transformations</h2>
+        <div class="container">
+            <p class="text-justify">
+                In this assignment we will implement basic matrix functionality like scalings, translations and rotations of 3D-objects.
+                Each task will create its own cube-ish object in the window on the left and the parameters that created it
+                can be modified below. Matrices will be represented like this: $[[m00, m01, m02, ...], [m10, m11, m12, ...],
+                ...]$.
+            </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>a)
+                        <code class="cody">identityMatrix(dim)</code>
+                    </h5>
+                    <div class="container">
+                        <p class="text-justify">
+                            This function returns a (square) identity matrix of arbitrary size, which is 0 everywhere except for the diagonal, where
+                            elements equal 1. Since we are working with homogeneous coordinates the resulting matrix will
+                            be $(\text{dim} + 1) \times (\text{dim} + 1)$. For $\text{dim} = 2$ for example you need to return a $3 \times
+                            3$ matrix! If implemented correctly, a
+                            <font color="#ef0000">red cube</font> will be displayed in the origin.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <h5>b)
+                        <code class="cody">scaleMatrix(s)</code>
+                    </h5>
+                    <div class="container">
+                        <p class="text-justify">
+                            This function returns a (square) scaling matrix of arbitrary size. $s$ is a vector where each component determines the
+                            scaling in the corresponding direction. $s$ also determines the size of the matrix in the same
+                            way $\text{dim}$ does in Assignment 1.1 (a). If implemented correcty, a
+                            <font color="#00ef00">green cuboid</font> will be displayed in the origin.
+                        </p>
+                    </div>
+                </div>
+                <div id="a1" class="renderwindow col-md-7 col-xs-12 float-left"></div>
+                <div class="col-sm">
+
+                    <h5>c)
+                        <code class="cody">translationMatrix(t)</code>
+                    </h5>
+                    <div class="container">
+                        <p class="text-justify">
+                            This function returns a (square) translation matrix of arbitrary size. $t$ is a vector where each component determines
+                            the translation in the corresponding direction. If implemented correcty, a
+                            <font color="#0000ef">blue cube</font> will be displayed floating on the right above.
+                        </p>
+                    </div>
+                    <h5>d)
+                        <code class="cody">rotationMatrix(angle, axis)</code>
+                    </h5>
+                    <div class="container">
+                        <p class="text-justify">
+                            A rotation matrix in 3D with a given axis $\vccc{x}{y}{z}$ and a given angle $\alpha$ can be computed like this. $$\vcccc{x^2
+                            t + c & x y t - z s & x z t + y s & 0}{y x t + z s & y^2 t + c & y z t - x s & 0}{z x t - y s
+                            & z y t + x s & z^2 t + c & 0}{0 & 0 & 0 & 1},$$ where $c = cos(\alpha)$, $t = 1 - \cos(\alpha)$
+                            and $s = \sin(\alpha)$.
+                        </p>
+                        <p class="text-justify">
+                            This function returns a (square) rotation matrix for three dimensions only. $angle$ is an angle in radians and $axis$
+                            is an array of three numbers that describes the rotation axis in 3D. $axis$ is not nescessarily
+                            normalized, but it can be normalized with the function
+                            <code class="cody">normalize</code> which is imported in the file already. If implemented correctly, a
+                            <font color="#00efef">cyan cube</font> will be displayed in some arbitrary rotation.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Identity Matrix</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="identityEnable">
+                                <label class="custom-control-label" for="identityEnable">Hide Me</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Scaling Parameters</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="scaleEnable">
+                                <label class="custom-control-label" for="scaleEnable">Hide Me</label>
+                            </div>
+                            <div class="m-2"></div>
+                            <h6>x:
+                                <span id="xValueScale"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="scaleX">
+                            </div>
+                            <h6>y:
+                                <span id="yValueScale"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="50" class="slider" id="scaleY">
+                            </div>
+                            <h6>z:
+                                <span id="zValueScale"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="50" class="slider" id="scaleZ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Translation Parameters</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="translationEnable">
+                                <label class="custom-control-label" for="translationEnable">Hide Me</label>
+                            </div>
+                            <div class="m-2"></div>
+                            <h6>x:
+                                <span id="xValueTranslation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="translationX">
+                            </div>
+                            <h6>y:
+                                <span id="yValueTranslation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="translationY">
+                            </div>
+                            <h6>z:
+                                <span id="zValueTranslation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="translationZ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Rotation Parameters</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="rotationEnable">
+                                <label class="custom-control-label" for="rotationEnable">Hide Me</label>
+                            </div>
+                            <div class="m-2"></div>
+                            <h6>Angle:
+                                <span id="angleValue"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="rotationAngle">
+                            </div>
+                            <br>
+                            <h6>Rotation Axis:</h6>
+                            <h6>x:
+                                <span id="xValueRotation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="rotationX">
+                            </div>
+                            <h6>y:
+                                <span id="yValueRotation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="rotationY">
+                            </div>
+                            <h6>z:
+                                <span id="zValueRotation"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="rotationZ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Assignment 1.2 -->
+        <h2>Assignment 1.2: Scaling Around an Anchor Point</h2>
+        <div class="container">
+            <div class="row">
+                <div id="a2" class="renderwindow col-md-7 col-xs-12 float-left"></div>
+                <div class="col-sm">
+                    <p class="text-justify">
+                        In this assignment we will implement the function
+                        <code class="cody">scaleRelativeMat(point, s)</code> which generates a matrix that scales objects relative to a point
+                        <code class="cody">point</code> with a scaling vector
+                        <code class="cody">s</code> (just like in the previous assignment). This method can be implemented very elegantly by using the
+                        provided function
+                        <code class="cody">multiply(m0, m1)</code> and the previously defined matrix functions
+                        <code class="cody">translationMatrix(t)</code> and
+                        <code class="cody">scaleMatrix(s)</code>.
+                    </p>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Scale Vector
+                                <code class="cody">s</code>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>x:
+                                <span id="xValueScale2"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="Scale2X">
+                            </div>
+                            <h6>y:
+                                <span id="yValueScale2"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="Scale2Y">
+                            </div>
+                            <h6>z:
+                                <span id="zValueScale2"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="Scale2Z">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-2"></div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Anchor Point
+                                <code class="cody">point</code>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <h6>x:
+                                <span id="xValueAnchorPoint"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="anchorPointX">
+                            </div>
+                            <h6>y:
+                                <span id="yValueAnchorPoint"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="anchorPointY">
+                            </div>
+                            <h6>z:
+                                <span id="zValueAnchorPoint"></span>
+                            </h6>
+                            <div class="slidecontainer" style="display:flex">
+                                <input type="range" min="-400" max="400" value="150" class="slider" id="anchorPointZ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Assignment 1.3 -->
+        <h2>Assignment 1.3: Mapping Rectangles</h2>
+        <div class="container">
+            <div class="row">
+                <div id="a3" class="renderwindow col-md-7 col-xs-12 float-left"></div>
+                <div class="col-sm">
+                    <p class="text-justify">
+                        In this assignment we will implement a mapping
+                        <code class="cody">mapRectangleMat(rectFrom, rectTo)</code> which returns a matrix that transforms
+                        <code class="cody">rectFrom</code> onto
+                        <code class="cody">rectTo</code>. Both are rectangles defined by
+                        <code class="cody">[[minX,minY],[maxX,maxY]]</code> as before. As in the previous assignment, this method can be implemented easily by using the previously
+                        defined methods.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Assignment 1.4 -->
+        <h2>Assignment 1.4: Plotting a 1D function with ParaView</h2>
+        <div class="container">
+            <p>
+                In this exercise we want to plot $\sin(\omega x) \times \exp{\alpha x}$ in the range of $[-5.0, 5.0]$.
+                Choose reasonable values for \(\omega\) and \(\alpha\).
+                To achieve this, create a <code class="cody">programmable source</code> that outputs a <code class="cody">vtkTable</code>.
+                Copy and paste the given script into the programmable source. It creates the function $sin(x)$ from $-5.0$ to $5.0$ with 
+                an increment of $0.1$ and stores the $x$-values and the $f(x)$-values in two arrays.
+
+                <br><br>
+                Sample the function $sin(x)$ from $-5.0$ to $5.0$ with an increment of $0.1$ and generate two arrays.
+                One array holds the $x$-values, while the other array holds the $f(x)$-values.
+                Add both arrays to the <code class="cody">vtkTable</code> and visualize the result using a <code class="cody">Line Chart View</code>.
+                Use the array containing the $x$-values to label the $x$-axis.
+            </p>
+            <p>
+                You will need the following functions:
+                <ul>
+                    <li>
+                        <code class="cody">self.GetOutput()</code> get the output vtk-object from ParaView (vtkTable in this case).
+                        <ul>
+                            <li>
+                                <code class="cody">AddColumn(columnArray)</code> add a column to the vtkTable.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <code class="cody">vtk.vtkDoubleArray</code> a vtk array storing doubles.
+                        <ul>
+                            <li>
+                                <code class="cody">SetName('Name')</code> set the name of the array (this is required to make the array visible to ParaView).
+                            </li>
+                            <li>
+                                <code class="cody">InsertNextValue(doubleValue</code> add element to the end of the array.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <br>
+        <p>
+            See the
+            <a class="assignmentlink" href="#solution">solution</a> for reference.
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <script src="../../js/util_assignment_loader.js"></script>
+
+    <script type="module">
+        loadAssignmentByTag("./rendererAss1.js");
+    </script>
+</body>
+
+</html>

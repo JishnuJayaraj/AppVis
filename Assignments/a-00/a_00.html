@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>i9AppVis Assignment 00</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap 4.1.3 -->
+    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src='../../libs/jquery-3.3.1.min.js'></script>
+    <script src='../../libs/bootstrap-4.1.3/js/bootstrap.min.js'></script>
+
+    <!-- own styles -->
+    <link rel="stylesheet" href="../../css/i9assignment.css">
+    <script type="text/javascript" async src="../../libs/MathJax/MathJax.js?config=TeX-MML-AM_CHTML">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$', '$'], ['\$', '\$']] },
+            TeX: {
+                Macros: {
+                    vccc: ["{\\begin{bmatrix}#1\\\\#2\\\\#3\\end{bmatrix}}", 3],
+                    vcccc: ["{\\begin{bmatrix}#1\\\\#2\\\\#3\\\\#4\\end{bmatrix}}", 4],
+                    vcc: ["{\\begin{bmatrix}#1\\\\#2\\end{bmatrix}}", 2],
+                    pvcc: ["{\\begin{pmatrix}#1\\\\#2\\end{pmatrix}}", 2],
+                }
+            }
+        });
+    </script>
+
+    <!-- Three.js -->
+    <script src="../../libs/three.min.js"></script>
+    <script src="../../libs/threeAdd/OrbitControls.js"></script>
+</head>
+
+
+<body class="text-justify">
+    <div id="root" class="container">
+        <img src="../../logo/logoTechFak.png" class="float-right col-md-3 col-xs-3 assignmentlogo">
+        <h1 class="assignment">Assignment 00: Javascript Tutorial</h1>
+        <p class="lead">
+            Learning how to use the assignment environment and the ECMA programming language
+        </p>
+        <h2>1. Introduction</h2>
+        <p>
+            In case this tutorial is not enough we recommend 
+            <a target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/js">w3schools.com</a>.
+            There you find tutorials for JavaScript and also HTML, CSS, and many other topics related to web development.
+        </p>
+        <p>
+            Why JavaScript?
+            <ul>
+                <li>Language of the web. You might need it later.</li>
+                <li>Easy to learn.</li>
+                <li>Platform independent (all you need is a text editor and a browser).</li>
+            </ul>
+        </p>
+        <p>
+            Before learning JavaScript you should know some basics about the Hyper Text Markup Language, also known as HTML.
+            Its elements are represented by tags. Metadata is written in <b>head</b>, visible text in <b>body</b>. Here is an example
+            of a simple HTML file:
+        </p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;This is a Heading&lt;/h1&gt;
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <p>
+            JavaScript code is written in between <b>script</b>-tags.
+        </p>
+        <pre><code>&lt;script&gt;
+    Write some JavaScript code here...
+&lt;/script&gt;</code></pre>
+        <p>
+            Alternatively scripts can also be written in external files and included in the html file. This is what we do here so you
+            do not need to care about html or css. All you have to do is write some JavaScript functions.
+        </p>
+        <!-- write about modules -->
+
+        <h2>2. Basics</h2>
+        <p>
+            Let's get started with JavaScript. First of all we will practice a bit in the console of your browser. Usually, it is opened by
+            pressing F12 on your keyboard. If not, find help 
+            <a target="_blank" rel="noopener noreferrer" href="https://www.google.de/search?q=open+browser+console">here</a>.<br>
+            You can now copy and paste all the following examples to the console and play with them.
+        </p>
+        <p>
+            If you are familiar with C, C++, or C# then you should not have any problems in getting used to the JavaScript syntax because it
+            is basically the same thing. Variables are declared and defined in the following way:
+        </p>
+        <pre><code>// Declaration of variables
+let x, y, z;<br>/* Definition of variables */<br>x = 5;<br>y = 6;<br>z = x + y;</code></pre>
+        <p>
+            Statements are separated by semicolons. This is not mandatory but recommended, as a missing semicolon might cause problems.
+            Comments are in C++ style and either start with // or are in between /**/. A major difference to C/C++ is that there is no type
+            definition. But beware that an implicit type exists!<br>
+            When declaring a new variable it has the initial value <b>undefined</b>. The <b>let</b> keyword is not mandatory but recommended
+            for plenty of reasons!
+        </p>
+        <p>
+            An alternative to <b>let</b> is <b>var</b>. If you read JavaScript tutorials you might find this a lot. But since <b>let</b> was
+            introduced in JavaScript I do not see any reason to use <b>var</b>. In general <b>let</b> has the behavior you want.
+        </p>
+        <p>
+            You can find out the type of a variable with <b>typeof</b>.
+        </p>
+        <pre><code>let str = "I am a string";<br>typeof(str);</code></pre>
+        <p>
+            Basic types are Number (64 bit floating point number), Boolean, String, and Object. Beware of implicit casting!
+        </p>
+        <pre><code>let y = 1;<br>typeof(y);<br>y = "1";<br>typeof(y);</code></pre>
+        <p>
+            You have all the common operators available and some more.
+        </p>
+        <pre><code>let a = 3;<br>a % 2;<br>++a;<br>a++;<br>a += 2;<br>a == "7";<br>a === "7";<br></code></pre>
+        <p>
+            Consider that JavaScript has two different types of comparison operators. One only checks the content the other also checks the type. 
+            Usually, you want to check also the type (===).<br>
+            Multiple values are stored in arrays.
+        </p>
+        <pre><code>let cars = ["Saab", "Volvo", "BMW"];
+let name = cars[0];
+cars[0] = "Opel";
+console.log(cars);          // print the whole array directly
+cars.sort();
+cars.length;
+cars.push("Audi");          // add an element to the end
+cars.splice(2,1);           // remove elements
+cars[7] = "Volkswagen";     // adding at higher index numbers leaves 'holes'
+let cars2 = cars            // this is only a shallow copy!!
+cars2[0] = "Porsche";
+console.log(cars[0]);</code></pre>
+        <p>
+            Functions are very powerful in JavaScript for several reasons. A function can be assigned to a variable. Furthermore, not relying on 
+            types means you can give a function any input, even other functions.
+        </p>
+        <pre><code>function myFunction(p1, p2) {
+    return p1 * p2; 
+}
+let f = myFunction;
+f(3,4);
+f = (p1, p2) => { return p1 * p2; };        // yes we can do lamda expressions
+f = (p1, p2) => p1 * p2;                    // and we can make them really short
+
+function evaluate(f, x1, x2, x3) {
+    return [f(x1), f(x2), f(x3)];
+}
+evaluate(x => x * x, 1, 2, 3);
+
+function findMax () {                       // use arguments array to access all arguments
+    let max = -Infinity ;
+    for (let i in arguments) {
+        if ( arguments[i] > max ) max = arguments[i];
+    }
+    return max;
+}
+findMax(1, 123, 500, 115, 44);</code></pre>
+        <p>
+            You have also already used objects, maybe without realizing it. An array is actually an object. The point where you might have realized was
+            when we used the implicit functions of the array. Objects are very easy to create in JavaScript.
+        </p>
+        <pre><code>let car = {
+    type: "Fiat",
+    model: 500,
+    color: "white",
+    drive: function(){ /*do something*/ }
+};
+
+car.type;
+car["type"];
+car.drive();
+
+// Object constructor function (outdated)
+function Car (type, model, color){
+    this.type = type;
+    this.model = model;
+    this.color = color;
+    this.drive = function () { /*do something*/ };
+}
+let fiat500 = new Car ("Fiat", 500, "white");</code></pre>
+        <p>
+            An object that might be of interest for you is the Math object. It contains important functions and numbers.
+        </p>
+        <pre><code>Math.PI;<br>Math.round(4.7);<br>Math.pow(8,2);<br>Math.sqrt(64);<br>Math.max();<br>Math.random();</code></pre>
+        <p>
+            I assume you know about <i>if, switch, for, while</i>. Some of them were used in the previous examples. If you need more information
+            you will find plenty online.
+        </p>
+
+
+
+        <h2>3. Avoiding Bugs</h2>
+        <p>
+            Each function creates a new local scope. All variables declared inside a function are not accessible from outside. If you use a variable
+            without declaring it, it will always be in global scope. That is why you should always declare variables with the <b>let</b> keyword!<br>
+        </p>
+        <pre><code>myFunction();
+// code here can use variable carName!
+
+function myFunction() {
+    carName = "Volvo";
+    for(let i = 0; i < 5; ++i){
+        // do something
+    }
+}</code></pre>
+        <p>
+            Talking about scope, there is a bit more to consider, namely hoisting. In JavaScript function declarations are hoisted, meaning all
+            functions are moved to the top of the current scope.<br>
+            Variable definitions are <b>not</b> hoisted! This is especially important for functions.
+        </p>
+        <pre><code>a(5);    // this is fine
+b(5);    // this will return an error
+function a(x) { console.log("a = " + x) };
+let b = function(x) { console.log("b = " + x) };</code></pre>
+        <p>
+            Some hints for debugging: The easiest way to get some information about your code might be <b>console.log()</b> which prints out stuff
+            on the console. Furthermore, you can write the <b>debugger</b> keyword in a script which will enforce the debugger of your browser.
+            It has the same effect as setting a breakpoint in your debugger. Talking about debugger, your browser has one. Use it!
+        </p>
+        <p>
+            Finally, I want to tell you some best practices which should help to avoid bugs.
+            <ul>
+                <li>Avoid global variables, <b>new</b>, and ==.</li>
+                <li>Beware of automatic type conversions.</li>
+                <li>Use a semicolon at the end of each statement.</li>
+                <li>Do not access arrays with named indexes.</li>
+                <li>Write in lower camelCase</li>
+            </ul>
+        </p>
+
+        Now you should be prepared for the upcoming assignments. You may immediately try by solving the following tasks.
+
+        <hr style="height:3px;color:#333;background-color:#333;" />
+
+        <h2>Assignment 0.1: Draw a polygon</h2>
+        <div class="container">
+            <div class="row">
+                <div id="a1" class="renderwindow col-md-7 col-xs-12 float-left"></div>
+                <div class="col-sm">
+                    Let's keep it simple for the beginning. Your task is to create a random polygon. It has the form
+                    <pre><code>[ [x1, y1, z1], [x2, y2, z2], ... ]</code></pre>
+                    Write it in the function <i>randomPolygon()</i> in <i>assignment0.js</i>. Use <i>Math.random()</i> 
+                    for the creation of random points. Besides that, the appearance of the polygon
+                    is up to you. Just try something and see what it looks like.
+                </div>
+            </div>
+        </div>
+        
+        <h2>Assignment 0.2: Draw a function</h2>
+        <div class="container">
+            <div class="row">
+                <div id="a2" class="renderwindow col-md-7 col-xs-12 float-left"></div>
+                <div class="col-sm">
+                    The output of Assignment 0.1 was quite wild. Let's continue create something with a bit more
+                    structure. Let us plot the function $$f(x) = x^2 - 0.5\,, \quad x \in [-2,2]. $$ You can plot a function by creating
+                    an array of sample points. This sample points are then connected with straight lines. If 
+                    you have enough points, it will look more or less smooth.<br>
+                    Your task is to create the array of sample points. They should be stored in the same format as
+                    in Assignment 0.1. Of course, the given function is only two-dimensional. Therefore, set the third component to 0.
+                </div>
+            </div>
+        </div>
+        
+        <p>See the
+            <a class="assignmentlink" href="#solution">solution</a> for reference.</p>
+        <br><br><br><br><br>
+    </div>
+    </div>
+    </div>
+
+    <script src="../../js/util_assignment_loader.js"></script>
+    <script>
+        loadAssignmentByTag("./rendererAss0.js");
+    </script>
+</body>
+
+</html>

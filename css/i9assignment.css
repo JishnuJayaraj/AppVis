@@ -1,0 +1,175 @@
+h1.assignment {
+  margin-top: 2rem;
+}
+
+.assignmentlogo {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.indexlink {
+  margin: 1rem;
+  position: fixed;
+  font-weight: bold;
+  bottom: 0;
+  left: 0;
+  background-color: #fffc;
+}
+
+.renderwindow::before {
+  content: "";
+  display: block;
+  padding-top: 70%;
+}
+
+.renderwindow {
+  position: relative;
+  margin-bottom: 1rem;
+  background-color: #eeeeec;
+  overflow: hidden;
+}
+
+.renderwindow canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.renderwindow .description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: 2rem;
+  text-align: center;
+}
+.renderwindow .menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #eeeeec77;
+  box-shadow: 0 0 10px #0003;
+  padding: 0.5rem;
+}
+.renderwindow .menu .menu-item {
+  padding: 0.2rem;
+  margin: 0.1rem;
+  cursor: pointer;
+  /*background-color:#eeeeecaa;
+  text-shadow:0 0 1px #fff;*/
+}
+
+.renderwindow .menu .menu-item.selected {
+  background-color: #555553aa;
+  /*text-shadow:0 0 1px #fff;*/
+  color: #eeeeec;
+}
+
+.renderwindow.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  z-index: 200;
+}
+
+.assignmentlinkback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 1rem;
+  text-align: center;
+}
+
+.watermark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1000%;
+  color: #33333022;
+  z-index: 2000;
+  font-weight: bolder;
+  pointer-events: none;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+.watermark div {
+  transform: rotate(30deg);
+}
+
+.testcaseresult {
+  background-color: #ecc;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+}
+
+.testcaseresult.success {
+  background-color: #cec;
+}
+
+.answer {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.answer.hidden {
+  background-color: #f7f7f7;
+  color: #aaa;
+}
+.answer.shown {
+  background-color: #efe;
+}
+.answer.invisible {
+  visibility: none;
+  position: absolute;
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 4px; /* Specified height */
+  background: #2b2b2b; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  border-radius: 50%; 
+  background: rgb(128, 0, 0);
+  cursor: pointer; /* Cursor on hover */
+}
+
+/* code displayed with a bounding box */
+.cody {
+  background-color: #dfdfdf;
+  font-weight: bold;
+  padding: 2px;
+}
