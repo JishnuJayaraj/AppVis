@@ -16,6 +16,19 @@ import {multiply, negate, normalize} from "../../js/util_transforms.js";
  */
 function identityMatrix(dim) {
     let result = [];
+
+    for(let i=0; i< dim+1; ++i) {
+        result.push([]);          // so the inner array exists
+        for(let j=0; j < dim+1 ; ++j) {
+            if(i == j) {
+                result [i][j] = 1;
+
+            }
+            else {
+                result[i][j] = 0;
+            }
+        }
+    }
     return result;
 }
 
@@ -33,6 +46,23 @@ function identityMatrix(dim) {
  */
 function scaleMatrix(s) {
     let result = [];
+
+    for(let i=0; i< s.length+1; ++i) {
+        result.push([]);          // so the inner array exists
+        for(let j=0; j < s.length+1 ; ++j) {
+            if(i == j) {
+                result [i][j] = s[i];
+                if(i === s.length) {
+                    result[i][j] = 1;
+                }
+
+            }
+            else {
+                result[i][j] = 0;
+            }
+        }
+    }
+
     return result;
 }
 
@@ -47,7 +77,13 @@ function scaleMatrix(s) {
  *					 [0,0,1] ]
  */
 function translationMatrix(t) {
-    let result = [];
+   // let result = [];
+
+    let result = identityMatrix(t.length);
+    for(let i=0; i<t.length; ++i) {
+        result[i][t.length] = t[i] ;
+    }
+
     return result;
 }
 
@@ -59,6 +95,37 @@ function translationMatrix(t) {
  */
 function rotationMatrix(angle, axis) {
     let result = [];
+
+    let mat = identityMatrix(axis.length);
+    let axle = normalize(axis);
+
+    let c = Math.cos(angle);
+    let t = 1 - c;
+    let s = Math.sin(angle);
+
+    let x = axle[0]; let y = axle[1]; let z = axle[2];
+
+    mat[0][0] = x**2*t + c;
+    mat[0][1] = x*y*t - z*s;
+    mat[0][2] = x*z*t + y*s;
+    mat[0][3] = 0;
+
+    mat[1][0] = y*x*t + z*s;
+    mat[1][1] = y**2*t + c;
+    mat[1][2] = y*z*t - x*s;
+    mat[1][3] = 0;
+
+    mat[2][0] = z*x*t - y*s;
+    mat[2][1] = z*y*t + x*s;
+    mat[2][2] = z**2*t + c;
+    mat[2][3] = 0;
+
+    mat[3][0] = 0;
+    mat[3][1] = 0;
+    mat[3][2] = 0;
+    mat[3][3] = 1;
+    return mat;
+
     return result;
 }
 
@@ -75,7 +142,17 @@ function rotationMatrix(angle, axis) {
  *  to scale a rectangle in-place
  */
 function scaleRelativeMat(point, s) {
-    let result = [];
+    
+
+    // translate in negaitve dir
+    // then scale
+    // then move it back
+    // T(p-)S(s)T(p)
+
+    let result = translationMatrix(point);
+    result  = multiply(result,scaleMatrix(s));
+    result = multiply(result,translationMatrix(negate(point)));
+
     return result;
 }
 
@@ -90,6 +167,21 @@ function scaleRelativeMat(point, s) {
  */
 function mapRectangleMatrix(rectFrom, rectTo) {
     let result = [];
+
+// move the min corner of X to origin
+// scale X to size of Y
+// then move it to Y
+// T(Ymin)S() T(-Ymin)
+    let x =rectFrom;
+    let y = rectTo;
+
+    result = translationMatrix(negate(x));
+
+    let xSize = [  x[1][0]-x[0][0], x[1][1]-x[0][1]  ];
+    let ySize = [  y[1][0]-y[0][0], y[1][1]-y[0][1]  ];
+
+    let s = [ y[ySize[0]] ]
+
     return result;
 }
 
