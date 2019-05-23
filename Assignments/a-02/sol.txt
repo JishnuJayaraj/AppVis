@@ -1,0 +1,76 @@
+2.1 Linear interpolation
+a)
+
+    fp = f0 + alpha(f1-f0)
+
+
+    similarly in p
+    (2,4)t = (0,2)t + alpha((5,7)t - (0,2)t)
+    Solving
+    in x, alpha= 2/5
+    also in y, alpha = 2/5
+
+    substitute alpha in fp equation
+
+    fp = 10 + 2/5 (18-10)
+        = 66/5
+b)
+    ploting the points ABCD is a paralellogram
+
+    1/4(A+B+C+D) = 1/4(20,16)t 
+                    =(5,4)
+                    = P, means P is the midpoint
+
+    therefore f at P is also the average of all points
+                    = 1/4(7,9,11,13)
+                    = 10
+
+    Bilenear interpolation: P = (1-u)(1-v)A + u(1-v)B + (1-u)v D + uv C
+    (for unit square u=v=1/2 at midpoint) -> get the same eq above
+
+    OR sub A<B<C<D in eq get linear set of eq in u and v for X and y
+    and Y is given by (1+6v) {from y coord of all points, we move from 1 to 7}
+        X is given by (1+6u+2v) {there is also shearing}
+        ** all the product terms, ie uv is cancelled away**
+
+c)
+    shifting, its not a paralellogram anynore, hense uv erm reamins and hense hard to calcualte
+    Hence should use stensil walk algorithm to solve(from lecture)
+    P = ... same as above
+      = phi(u,v)
+
+      P  ~= P0 + J _phi(delu, delv)t 
+      P - P0 = delx = J_phi(delu, delv)
+      (delu, delv)  = J^-1 _phi (delx1, dely1)
+      ...
+      phone gallery
+      ...  
+
+
+2.2 barycentric coord
+a)
+    P3 = alphaP0 + betaP1 + gammaP2
+    alpha + beta + gamma =1
+
+    x3 = alpha.X0 + beta.X1 + gamma.X2
+    Y3 = ...
+    1  = alpha + beta + gamma
+
+    Cramer to solve this matrix (3 eq, 3 unknowns)
+
+
+    But more easily can be solved by taking Area of segments as barycentric coord
+
+    alpha = area(A0)/area(A) ; beta = ... ; gamma = ... 
+
+    ...
+    ** phone gallery **
+    ...
+
+
+
+
+
+
+
+
